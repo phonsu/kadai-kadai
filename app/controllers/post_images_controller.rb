@@ -8,6 +8,7 @@ class PostImagesController < ApplicationController
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
     if @post_image.save
+      flash[:notice] = "Book was successfully updated."
       redirect_to post_images_path
     else
       render :new
@@ -26,6 +27,7 @@ class PostImagesController < ApplicationController
   def destroy
     @post_image = PostImage.find(params[:id])
     @post_image.destroy
+    flash[:notice] = 'Book was successfully destroyed.'
     redirect_to '/post_images'
   end
 
